@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Henry Adams — Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=8">
+
+<body>
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <div class="boot-title">ATLAS · HENRY ADAMS</div>
+    <div class="boot-line" data-i="0"><span>INITIALIZING RENDERER</span><span class="ok">OK</span></div>
+    <div class="boot-line" data-i="1"><span>LOADING LANDMASS · 5,000 PTS</span><span class="ok">OK</span></div>
+    <div class="boot-line" data-i="2"><span>LOCKING CAREER STATIONS</span><span class="ok">08</span></div>
+    <div class="boot-line" data-i="3"><span>CALIBRATING ORBIT</span><span class="ok">OK</span></div>
+    <div class="boot-bar"><i id="bootBar"></i></div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="monogram"><span class="dot"></span>HENRY ADAMS</div>
+  <nav class="navlinks">
+    <a href="#journey">Journey</a><a href="#education">Education</a><a href="#skills">Skills</a>
+    <a href="#resume" class="nav-cta">Résumé</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <canvas id="globe"></canvas>
+  <div class="hero-fallback"></div>
+  <div class="loadbar" id="loadbar"></div>
+  <div class="hero-grid"></div>
+  <div class="frame-corner tl"></div><div class="frame-corner tr"></div>
+  <div class="frame-corner bl"></div><div class="frame-corner br"></div>
+  <div class="labels" id="labels"></div>
+
+  <div class="compass"><svg viewBox="0 0 54 54">
+    <circle cx="27" cy="27" r="22" fill="none" stroke="#3E6E9E" stroke-width="1" opacity=".5"/>
+    <g class="needle" id="needle">
+      <path d="M27 8 L31 27 L27 24 L23 27 Z" fill="#E9A23B"/>
+      <path d="M27 46 L31 27 L27 30 L23 27 Z" fill="#3E6E9E"/>
+    </g>
+    <text x="27" y="6" text-anchor="middle" fill="#A6D2EF" font-family="monospace" font-size="7">N</text>
+  </svg></div>
+
+  <div class="legend" id="legend">
+    <h5>Map Key</h5>
+    <div class="lrow"><span class="gl-beacon"></span>Career stop · click to travel</div>
+    <div class="lrow"><span class="gl-land"><i></i><i></i><i></i></span>Landmass</div>
+    <div class="lrow"><span class="gl-arc"></span>Journey path</div>
+    <div class="lrow"><span class="gl-sat"></span>Remote link</div>
+  </div>
+
+  <div class="hero-top"><div class="eyebrow">Economics · Engineering Management</div></div>
+  <div class="hud-tr"><div class="coord-label">Sub-camera point</div><div class="coord-val" id="coordReadout"><b>—</b></div></div>
+
+  <div class="hero-body">
+    <h1 class="kin-head" id="hero-name" data-kin>Henry Adams</h1>
+    <p class="lede" id="hero-tagline">Strategy and operations across two hemispheres — from clean-energy advisory in Sydney to engineering management in the Rockies.</p>
+  </div>
+
+  <div class="chips" id="chips"><div class="chips-title">Career stops</div></div>
+
+  <div class="controls">
+    <button class="ctrl primary" id="tourBtn"><span class="tri"></span>Tour the journey</button>
+    <span class="tour-prog" id="tourProg" style="display:none">—</span>
+    <button class="ctrl region-btn" id="region-oregon">Oregon</button>
+    <button class="ctrl region-btn" id="region-colorado">Colorado</button>
+    <button class="ctrl region-btn" id="region-australia">Australia</button>
+  </div>
+  <div class="scrollcue">Scroll<div class="bar"></div></div>
+
+  <div class="detail" id="detail">
+    <button class="dclose" id="dclose">✕</button>
+    <div class="dnum" id="dnum">—</div>
+    <div class="dtag" id="dtag">Location</div>
+    <h3 id="dtitle">—</h3>
+    <div class="dorg" id="dorg">—</div>
+    <div class="dmeta"><div><span>When</span><b id="ddate">—</b></div><div><span>Where</span><b id="dwhere">—</b></div></div>
+    <p id="ddesc">—</p>
+  </div>
+
+  <!-- FLAT REGION MAP OVERLAY -->
+  <div id="region-map-overlay">
+    <div id="rmap-header">
+      <div id="rmap-title">COLORADO</div>
+      <button id="rmap-close">&#8592; Back to globe</button>
+    </div>
+    <div id="rmap-canvas"></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="mtrack"></div></div>
+
+<section class="section" id="journey">
+  <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">The Journey</h2><span class="sec-desc">Numbered to match the globe</span></div>
+  <div class="tl" id="timeline"></div>
+</section>
+
+<section class="section" id="education">
+  <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Education</h2><span class="sec-desc">Two programs · one trajectory</span></div>
+  <div class="edu-grid">
+    <div class="edu-glass reveal">
+      <div class="eg-top"><h3>University of Colorado Boulder</h3><span class="status live">In Progress</span></div>
+      <div class="deg">Master of Engineering · Engineering Management</div>
+      <div class="sub">Lockheed Martin Engineering Management Program</div>
+      <div class="erow"><div><span>Dates</span>Apr 2026 – May 2028</div><div><span>Location</span>Boulder, CO</div><div><span>Focus</span>Systems · Operations · Strategy</div></div>
+    </div>
+    <div class="edu-glass reveal">
+      <div class="eg-top"><h3>University of Oregon</h3><span class="status done">Conferred 2025</span></div>
+      <div class="deg">B.S. Economics · Minor in Entrepreneurship</div>
+      <div class="sub">Econometrics, capital markets, and venture strategy</div>
+      <div class="erow"><div><span>Dates</span>2021 – 2025</div><div><span>Location</span>Eugene, OR</div><div><span>Leadership</span>President, Alpine Ski Team</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">The Toolkit</h2><span class="sec-desc">Live capability scan</span></div>
+  <div class="bento reveal">
+    <div class="tile t-strategy"><h4><span class="n">01 /</span> Strategy &amp; Finance</h4><ul><li>Financial modeling &amp; valuation</li><li>DCF · NPV · IRR · MIRR</li><li>Capital budgeting</li><li>Market &amp; competitive analysis</li><li>Monte Carlo simulation</li></ul></div>
+    <div class="tile t-radar-wrap" id="radarTile"><h4><span class="n">Live /</span> Capability Scan</h4><canvas id="radarCv"></canvas></div>
+    <div class="tile t-pm"><h4><span class="n">02 /</span> Project Mgmt</h4><ul><li>Agile &amp; predictive</li><li>Stakeholder management</li><li>Ops coordination</li></ul></div>
+    <div class="tile t-tools"><h4><span class="n">03 /</span> Tooling</h4><ul><li>Excel (Expert)</li><li>R · econometrics</li><li>Notion · Figma</li><li>Claude Code · MCP</li></ul></div>
+    <div class="tile t-domains"><h4><span class="n">04 /</span> Domains</h4><ul><li>Clean energy</li><li>Deep tech advisory</li><li>Resort ops</li></ul></div>
+    <div class="tile t-certs"><h4><span class="n">05 /</span> Certifications</h4><div class="certs-row"><div class="cert">CAPM</div><div class="cert">Microsoft Excel Expert</div><div class="cert">Certified Pool Operator</div><div class="cert">Red Cross Lifeguard</div><div class="cert">CPR / AED</div></div></div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="resume-cta reveal">
+    <div class="eyebrow">Take it with you</div>
+    <h2 class="kin-head" data-kin>The one-page version.</h2>
+    <p>Everything above, distilled to a clean sheet. Opens your print dialog — save as PDF or send it straight to paper.</p>
+    <button class="dl-btn" id="dlBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>Download Résumé</button>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="fl">© 2026 Henry Adams · Built as a living résumé</div>
+  <div class="fr">
+    <a href="https://henryadams123.github.io/HenryAdamsPortfolio" target="_blank" rel="noopener">Portfolio</a>
+    <!-- EDIT: add your LinkedIn URL -->
+    <a href="#" id="linkedin">LinkedIn</a>
+    <a href="#hero">Top ↑</a>
+  </div>
+</footer>
+
+<div id="print-resume">
+  <h1>Henry Adams</h1>
+  <div class="pt">Economics · Engineering Management · Strategy &amp; Operations</div>
+  <div class="pc">Denver / Arvada, CO · Dual citizen (US/AU) · henryadams123.github.io/HenryAdamsPortfolio</div>
+  <h2>Education</h2>
+  <div class="j"><div class="jt"><span>University of Colorado Boulder — M.Eng, Engineering Management</span><span class="d">Apr 2026 – May 2028</span></div><div class="o">Lockheed Martin Engineering Management Program · Boulder, CO</div></div>
+  <div class="j"><div class="jt"><span>University of Oregon — B.S. Economics, Minor in Entrepreneurship</span><span class="d">2021 – 2025</span></div><div class="o">Eugene, OR · President, Alpine Ski Team</div></div>
+  <h2>Experience</h2>
+  <div class="j"><div class="jt"><span>Strategy &amp; Banking Intern — RFC Ambrian</span><span class="d">Aug 2024</span></div><div class="o">Sydney, Australia</div><p class="d">Clean-energy and deep-tech advisory and incubation; supported strategy, market analysis, and deal screening for early-stage ventures in the energy transition.</p></div>
+  <div class="j"><div class="jt"><span>President — University of Oregon Alpine Ski Team</span><span class="d">2023 – 2025</span></div><div class="o">Eugene, OR</div><p class="d">Led a 22-person roster, managed budget and logistics, and qualified the program for USCSA National Championships.</p></div>
+  <div class="j"><div class="jt"><span>Ski Boot Fitting &amp; Sales — Boot Mechanics</span><span class="d">2022 – 2024</span></div><div class="o">Golden, CO</div><p class="d">High-ticket technical fitting and consultative sales for performance alpine athletes.</p></div>
+  <div class="j"><div class="jt"><span>Ski Technician — Denver Sports Lab</span><span class="d">2022 – 2023</span></div><div class="o">Denver, CO</div><p class="d">Precision tuning and equipment service for competitive and recreational skiers.</p></div>
+  <div class="j"><div class="jt"><span>Facilities Operations Lead — MCA Central Park</span><span class="d">2021 – 2023</span></div><div class="o">Denver, CO</div><p class="d">Led a facilities team and managed pool systems as a certified pool operator across a large residential community.</p></div>
+  <div class="j"><div class="jt"><span>Construction &amp; Maintenance — Copper Mountain Resort</span><span class="d">2021 – 2022</span></div><div class="o">Copper Mountain, CO</div><p class="d">On-mountain construction and maintenance supporting resort operations at altitude.</p></div>
+  <div class="j"><div class="jt"><span>Business Development Intern — Turning Point Pen Co. (remote)</span><span class="d">2021</span></div><div class="o">Eugene, OR · company in McLean, VA</div><p class="d">Early-stage business development and go-to-market support for a consumer products venture.</p></div>
+  <h2>Skills &amp; Tools</h2>
+  <p class="sk"><b>Strategy &amp; Finance:</b> Financial modeling, DCF/NPV/IRR/MIRR, capital budgeting, market &amp; competitive analysis, Monte Carlo simulation.<br><b>Project Management:</b> Agile &amp; predictive methods, stakeholder management, operations coordination.<br><b>Tooling:</b> Excel (Expert), R, Notion, Figma &amp; Canva, Claude Code / MCP automation.</p>
+  <h2>Certifications</h2>
+  <p class="sk">CAPM · Microsoft Excel Expert · Certified Pool Operator · Red Cross Lifeguard · CPR/AED</p>
+</div>
+
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="js/data.js?v=4"></script>
+<script src="js/globe.js?v=12"></script>
+<script src="js/sections.js?v=3"></script>
+</body>
+</html>
